@@ -17,6 +17,8 @@ package org.outerj.daisy.diff.helper;
 
 import java.io.IOException;
 
+import org.apache.xerces.xni.parser.XMLDocumentFilter;
+import org.cyberneko.html.filters.ElementRemover;
 import org.cyberneko.html.parsers.SAXParser;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
@@ -65,6 +67,65 @@ public class NekoHtmlParser {
 
         parser.setContentHandler(new RemoveNamespacesHandler(
                 new MergeCharacterEventsHandler(consumer)));
+
+        String[] attrs = new String[]{"style", "cellpadding", "cellspacing", "colspan", "href"};
+        //String[] attrs = new String[]{"cellpadding", "cellspacing", "colspan"};
+
+        ElementRemover elementRemover = new ElementRemover();
+        //elementRemover.acceptElement("?xml", attrs);
+        elementRemover.acceptElement("html", attrs);
+        //elementRemover.acceptElement("meta", attrs);
+        //elementRemover.acceptElement("head", attrs);
+        //elementRemover.acceptElement("title", attrs);
+        elementRemover.acceptElement("body", attrs);
+        elementRemover.acceptElement("style", attrs);
+        elementRemover.acceptElement("div", attrs);
+        elementRemover.acceptElement("main", attrs);
+        elementRemover.acceptElement("section", attrs);
+        elementRemover.acceptElement("header", attrs);
+        elementRemover.acceptElement("footer", attrs);
+        elementRemover.acceptElement("article", attrs);
+        elementRemover.acceptElement("span", attrs);
+        elementRemover.acceptElement("table", attrs);
+        elementRemover.acceptElement("tbody", attrs);
+        elementRemover.acceptElement("thead", attrs);
+        elementRemover.acceptElement("tfoot", attrs);
+        elementRemover.acceptElement("th", attrs);
+        elementRemover.acceptElement("tr", attrs);
+        elementRemover.acceptElement("td", attrs);
+        elementRemover.acceptElement("col", attrs);
+        elementRemover.acceptElement("colgroup", attrs);
+        elementRemover.acceptElement("a", attrs);
+        elementRemover.acceptElement("br", attrs);
+        elementRemover.acceptElement("img", new String[]{"src", "alt", "style"});
+        elementRemover.acceptElement("b", attrs);
+        elementRemover.acceptElement("i", attrs);
+        elementRemover.acceptElement("u", attrs);
+        elementRemover.acceptElement("em", attrs);
+        elementRemover.acceptElement("sub", attrs);
+        elementRemover.acceptElement("sup", attrs);
+        elementRemover.acceptElement("ol", attrs);
+        elementRemover.acceptElement("ul", attrs);
+        elementRemover.acceptElement("dl", attrs);
+        elementRemover.acceptElement("dt", attrs);
+        elementRemover.acceptElement("dd", attrs);
+        elementRemover.acceptElement("li", attrs);
+        elementRemover.acceptElement("h1", attrs);
+        elementRemover.acceptElement("h2", attrs);
+        elementRemover.acceptElement("h3", attrs);
+        elementRemover.acceptElement("h4", attrs);
+        elementRemover.acceptElement("h5", attrs);
+        elementRemover.acceptElement("h6", attrs);
+        elementRemover.acceptElement("blockquote", attrs);
+        elementRemover.acceptElement("nav", attrs);
+
+        elementRemover.removeElement("script");
+        elementRemover.removeElement("title");
+        elementRemover.removeElement("head");
+
+        XMLDocumentFilter[] filters = { elementRemover };
+        parser.setProperty("http://cyberneko.org/html/properties/filters", filters);
+
         parser.parse(is);
     }
 
@@ -125,6 +186,10 @@ public class NekoHtmlParser {
 
         public void startElement(String namespaceURI, String localName,
                 String qName, Attributes atts) throws SAXException {
+            if (localName.contains(":")) {
+                System.out.println("Found element: " + localName);
+            }
+
             AttributesImpl newAtts = new AttributesImpl(atts);
             for (int i = 0; i < atts.getLength(); i++) {
                 newAtts.setURI(i, "");
