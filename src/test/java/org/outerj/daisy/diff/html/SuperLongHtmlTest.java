@@ -2,7 +2,9 @@ package org.outerj.daisy.diff.html;
 
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -20,6 +22,8 @@ public class SuperLongHtmlTest {
         String newText = this.readLineByLineJava8("src/test/resources/testdata/sec-key-keycorp-10q-2019-may-03.html");
 
         String result = HtmlTestFixture.diff(oldText, newText);
+        writeFile("/tmp/output.html", result);
+
         assertTrue("Expected a change",result.indexOf("diff-html-changed") > -1);
 
     }
@@ -34,5 +38,10 @@ public class SuperLongHtmlTest {
         return contentBuilder.toString();
     }
 
+    public void writeFile(String filePath, String output) throws FileNotFoundException {
+        try (PrintWriter out = new PrintWriter(filePath)) {
+            out.println(output);
+        }
+    }
 
 }

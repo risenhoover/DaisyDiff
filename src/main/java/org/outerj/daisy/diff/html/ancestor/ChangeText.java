@@ -84,7 +84,7 @@ public class ChangeText {
 
     private void addTextBrokenAcrossLines(String s) {
         //assert (s.indexOf(' ') >= 0 && s.length() > maxNbCharsPerLine);
-        assert (s.length() > maxNbCharsPerLine);
+        //assert (s.length() > maxNbCharsPerLine);
         // if (!(s.indexOf(' ') >= 0 && s.length() > maxNbCharsPerLine)) {
         //    System.out.println("here");
         //}
