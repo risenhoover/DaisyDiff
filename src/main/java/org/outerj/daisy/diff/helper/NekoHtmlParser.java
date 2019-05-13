@@ -71,7 +71,7 @@ public class NekoHtmlParser {
                 new MergeCharacterEventsHandler(consumer)));
 
         String[] attrs = new String[]{"style", "cellpadding", "cellspacing", "colspan",
-                "href", "class", "align", "border",
+                "class", "align", "border",
                 "valign"};
         //String[] attrs = new String[]{"cellpadding", "cellspacing", "colspan"};
 
