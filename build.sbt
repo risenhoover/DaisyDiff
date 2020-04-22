@@ -7,7 +7,11 @@ lazy val root = (project in file("."))
     scalaVersion := "2.12.7",
     version := "1.0-SNAPSHOT"
   )
-
+  .settings(
+        publishArtifact in (Compile, packageDoc) := false,
+        publishArtifact in packageDoc := false,
+        sources in (Compile,doc) := Seq.empty
+    )
 
 // skip javadoc on stage
 // https://www.scala-sbt.org/sbt-native-packager/formats/universal.html
