@@ -8,6 +8,11 @@ lazy val root = (project in file("."))
     version := "1.0-SNAPSHOT"
   )
 
+
+// skip javadoc on stage
+// https://www.scala-sbt.org/sbt-native-packager/formats/universal.html
+mappings in (Compile, packageDoc) := Seq()
+
 resolvers += "LifeRay Public" at "https://repository.liferay.com/nexus/content/repositories/public/"
 
 // https://mvnrepository.com/artifact/nekohtml/nekohtml
