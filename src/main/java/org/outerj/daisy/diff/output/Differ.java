@@ -23,7 +23,6 @@ import org.xml.sax.SAXException;
  * as produced by DaisyDiff.
  * 
  * @author kapelonk
- * @see HtmlDiffer
  *
  */
 public interface Differ {

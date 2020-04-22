@@ -109,7 +109,7 @@ public class TagNode extends Node implements Iterable<Node> {
     }
 
     /**
-     * @return <code>Iterator&lt;Node></code> over children collection
+     * @return <code>Iterator&lt;Node&gt;</code> over children collection
      * @throws java.lang.NullPointerException - if children collection is null
      */
     public Iterator<Node> iterator() {
@@ -287,7 +287,7 @@ public class TagNode extends Node implements Iterable<Node> {
      * <p>It actually might have nothing to do with being really deleted, because
      * the element might be kept after its text content was deleted.<br>
      * Example:<br>
-     * table cells can be kept after its text content was deleted</br>
+     * table cells can be kept after its text content was deleted.
      * horizontal rule has never had text content, but can be deleted</p>
      */
     @Override

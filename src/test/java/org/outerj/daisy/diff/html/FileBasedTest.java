@@ -51,7 +51,7 @@ import org.outerj.daisy.diff.BetterParameterized;
  *
  * Note: The files are expected to be UTF-8 encoded.
  *
- * @author Carsten Pfeiffer <carsten.pfeiffer@gebit.de>
+ * @author Carsten Pfeiffer
  * @version 05 Jul 2011
  */
 @RunWith(BetterParameterized.class)

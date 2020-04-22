@@ -59,7 +59,7 @@ public abstract class Node {
      * Index of an element in that list corresponds its depth
      * (if depth of the root is 0)
      * @return ordered by depth list of the ancestors or an empty
-     * <code>List&lt;TagNode></code> if the parent is null.
+     * <code>List&lt;TagNode&gt;</code> if the parent is null.
      */
     public List<TagNode> getParentTree() {
         List<TagNode> ancestors = new ArrayList<TagNode>();
@@ -174,8 +174,8 @@ public abstract class Node {
 
     /**
      * @return <code>true</code> only if one of the ancestors is
-     * &lt;pre> tag. <code>false</code> otherwise (including case
-     * where this node is &lt;pre> tag)
+     * &lt;pre&gt; tag. <code>false</code> otherwise (including case
+     * where this node is &lt;pre&gt; tag)
      */
     public boolean inPre() {
         for (TagNode ancestor : getParentTree()) {
