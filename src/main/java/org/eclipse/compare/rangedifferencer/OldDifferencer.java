@@ -16,8 +16,8 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
- * The algorithm used is an objectified version of one described in: <it>A File
- * Comparison Program,</it> by Webb Miller and Eugene W. Myers, Software
+ * The algorithm used is an objectified version of one described in: <i>A File
+ * Comparison Program,</i> by Webb Miller and Eugene W. Myers, Software
  * Practice and Experience, Vol. 15, Nov. 1985.
  */
 /* package */class OldDifferencer {
